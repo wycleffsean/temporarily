@@ -2,3 +2,12 @@ AllCops:
   Exclude:
     - 'spec/dummy/**/*'
     - 'tmp/**/*'
+Lint/HandleExceptions:
+  Exclude:
+    - 'spec/support/database.rb'
+Style/TrailingCommaInArguments:
+  Exclude:
+    - '**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

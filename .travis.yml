@@ -2,4 +2,10 @@ sudo: false
 language: ruby
 rvm:
   - 2.5.0
+services:
+  - mysql
+  - postgresql
+before_install:
+  - mysql -e 'CREATE DATABASE temporarily_test;'
+  - psql -c 'CREATE DATABASE temporarily_test;' -U postgres
 before_install: gem install bundler -v 1.16.1
