@@ -18,8 +18,9 @@ Gem::Specification.new do |spec|
   spec.files = Dir['{app,config,lib}/**/*', 'Rakefile', 'README.md']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activerecord', '~> 5.2.0'
+  spec.add_dependency 'activerecord', '>= 3.2.22.5'
 
+  spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'mysql2'
   spec.add_development_dependency 'pg'

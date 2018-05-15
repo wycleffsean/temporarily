@@ -3,7 +3,7 @@ module Database
     case engine
     when :sqlite3
       ActiveRecord::Base.establish_connection(
-        adapter: engine,
+        adapter: engine.to_s,
         database: ':memory:'
       )
     else
@@ -15,7 +15,7 @@ module Database
 
   def self.create_tables
     ActiveRecord::Base.connection.tap do |conn|
-      conn.drop_table(:things, if_exists: true)
+      conn.drop_table(:things) if conn.table_exists?(:things)
       conn.create_table :things do |t|
         t.text :name
       end
@@ -24,7 +24,7 @@ module Database
 
   def self.connection_params(engine)
     params = {
-      adapter: engine,
+      adapter: engine.to_s,
       database: 'temporarily_test',
       encoding: 'utf8'
     }
