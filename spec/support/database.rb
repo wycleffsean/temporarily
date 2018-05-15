@@ -7,22 +7,10 @@ module Database
         database: ':memory:'
       )
     else
-      create_database(engine)
+      ActiveRecord::Base.establish_connection(connection_params(engine))
     end
 
     create_tables
-  end
-
-  def self.create_database(engine)
-    params = connection_params(engine)
-    ActiveRecord::Base.establish_connection(params)
-    begin
-      ActiveRecord::Base.connection.create_database 'temporarily_test'
-    rescue ActiveRecord::StatementInvalid
-    end
-    ActiveRecord::Base.establish_connection(
-      params.merge(database: 'temporarily_test')
-    )
   end
 
   def self.create_tables
@@ -35,7 +23,11 @@ module Database
   end
 
   def self.connection_params(engine)
-    params = { adapter: engine, encoding: 'utf8' }
+    params = {
+      adapter: engine,
+      database: 'temporarily_test',
+      encoding: 'utf8'
+    }
     params[:username] = 'travis' if engine == :mysql2
     params
   end

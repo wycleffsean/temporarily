@@ -6,6 +6,6 @@ services:
   - mysql
   - postgresql
 before_install:
+  - gem install bundler -v 1.16.1
   - mysql -e 'CREATE DATABASE temporarily_test;'
   - psql -c 'CREATE DATABASE temporarily_test;' -U postgres
-before_install: gem install bundler -v 1.16.1
