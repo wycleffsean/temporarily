@@ -11,3 +11,10 @@ Style/TrailingCommaInArguments:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+  Exclude:
+    - 'spec/**/*'
+    - 'gemfiles/**/*'
+    - 'bin/**/*'
